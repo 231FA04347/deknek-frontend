@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const DEFAULT_DEV_API = 'http://localhost:5000/api';
+const DEFAULT_PROD_API = 'https://dek-nek-round2.vercel.app/api';
+
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL ||
+  (process.env.NODE_ENV === 'production' ? DEFAULT_PROD_API : DEFAULT_DEV_API);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
